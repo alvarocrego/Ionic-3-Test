@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
   selectedItem: any;
+  films: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http) {
+
+    this.http.get('http://www.omdbapi.com/?s=star&apikey=6d9009e4')
+      .map(res => res.json())
+      .subscribe(res =>{
+        this.films = res.Search
+      },(err) => {
+        alert("Fallo al cargar las películas")
+      });
+
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 

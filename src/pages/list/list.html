@@ -8,12 +8,14 @@
 </ion-header>
 
 <ion-content>
+
+
+
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
+    <button ion-item *ngFor="let film of films" (click)="itemTapped($event, item)">
+      {{film.Title}}
       <div class="item-note" item-end>
-        {{item.note}}
+        {{film.Year}}
       </div>
     </button>
   </ion-list>
