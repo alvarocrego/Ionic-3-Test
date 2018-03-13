@@ -5,6 +5,8 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {detailsPage} from "../details/details";
 
+import { ModalController } from 'ionic-angular';
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -15,7 +17,7 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public http:Http) {
+  constructor(public navCtrl: NavController, public http:Http, public modalCtrl: ModalController) {
 
     this.http.get('http://www.omdbapi.com/?s=star&apikey=6d9009e4')
       .map(res => res.json())
@@ -39,10 +41,14 @@ export class ListPage {
     }
   }
 
+  presentModal() {
+
+  }
+
   itemTapped(event, film) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(detailsPage, {
-      film: film
+    let modal = this.modalCtrl.create(detailsPage,{
+      film:film
     });
+    modal.present();
   }
 }

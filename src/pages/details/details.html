@@ -1,20 +1,60 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Detalles</ion-title>
+    <ion-title>Description</ion-title>
+    <ion-buttons ion-button start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows,portrait,landscape"></ion-icon>
+        <ion-icon name="md-close" hideWhen="android,windows,portrait,landscape"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <div *ngIf="film" padding>
-    <h2>{{film.Title}}</h2>
+<ion-content  *ngIf="film">
+    <ion-list style="padding-top: 60px">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="{{film.Poster}}">
+        </ion-thumbnail>
+        <h2>{{film.Title}}</h2>
+        <p>{{film.Director}} • {{film.Year}}</p>
+      </ion-item>
 
-    <p>
-    {{film.Genre}}
-    </p>
+      <ion-item>
+        Rated
+        <ion-note item-end>
+          {{film.Rated}}
+        </ion-note>
+      </ion-item>
 
+      <ion-item>
+        Released
+        <ion-note item-end>
+          {{film.Released}}
+        </ion-note>
+      </ion-item>
 
-  </div>
+      <ion-item>
+        Country
+        <ion-note item-end>
+          {{film.Country}}
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        Production
+        <ion-note item-end>
+          {{film.Production}}
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  <ion-card>
+    <ion-card-header>
+      Plot
+    </ion-card-header>
+    <ion-card-content>
+      {{film.Plot}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
