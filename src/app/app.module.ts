@@ -10,12 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpModule } from '@angular/http';
+import {detailsPage} from "../pages/details/details";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    detailsPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { HttpModule } from '@angular/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    detailsPage
   ],
   providers: [
     StatusBar,

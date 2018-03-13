@@ -3,18 +3,19 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {detailsPage} from "../details/details";
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
+
   films: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http) {
+  constructor(public navCtrl: NavController, public http:Http) {
 
     this.http.get('http://www.omdbapi.com/?s=star&apikey=6d9009e4')
       .map(res => res.json())
@@ -23,9 +24,6 @@ export class ListPage {
       },(err) => {
         alert("Fallo al cargar las películas")
       });
-
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
 
     // Let's populate this page with some filler content for funzies
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
@@ -41,10 +39,10 @@ export class ListPage {
     }
   }
 
-  itemTapped(event, item) {
+  itemTapped(event, film) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
+    this.navCtrl.push(detailsPage, {
+      film: film
     });
   }
 }
